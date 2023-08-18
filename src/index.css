@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slick-prev {
+  left: 0% !important;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 0% !important;
+  z-index: 1;
+}
+
+.slick-arrow.slick-prev::before {
+  display: none;
+}
+
+.slick-arrow.slick-next::before {
+  display: none;
+}
+
+.slick-slide {
+  width: 150px;
+}
+
+.leaflet-container {
+  height: inherit;
+  width: inherit;
+}
