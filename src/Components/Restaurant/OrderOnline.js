@@ -55,7 +55,7 @@ const categoryList =[
 const OrderOnline = () => {
     return (
         <>
-        <div className="">
+        <div className="mb-20">
         <div className="flex relative gap-4">
             <aside className="w-1/4 relative hidden md:block border-r border-gray-200">
                 <div className="sticky left-0 top-72"><CategoryList menu={categoryList}/></div>

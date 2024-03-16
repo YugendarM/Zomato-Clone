@@ -35,9 +35,9 @@ const LgCart = ({toggle,open}) => {
                 <div className="flex items-center justify-between py-3">
                     <div className="flex items-center gap-2 font-medium text-xl">
                         <button className="border p-1 rounded-sm" onClick={toggle}>
-                            {open ? <IoMdArrowDropup/>:<IoMdArrowDropdown/>}
+                            {open ? <IoMdArrowDropdown/>:<IoMdArrowDropup/>}
                         </button>
-                        <p className="">Your Orders (1)</p>
+                        <p className="">Yourzdv Orders (1)</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <p className="text-xl font-medium">Subtotal:₹300 </p>

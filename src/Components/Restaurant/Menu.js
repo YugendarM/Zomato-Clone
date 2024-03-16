@@ -4,7 +4,7 @@ import MenuCard from "../Cards/MenuCard";
 const Menu = () => {
     return(
         <>
-            <div className="flex flex-col gap-3 border-b border-gray-100 pt-5 pb-10 px-3 md:px-0">
+            <div className="flex flex-col gap-3 border-b border-gray-100 pt-5 pb-10 px-3 md:px-0 mb-20">
             <h1 className="text-2xl font-medium">SS Hyderabad Biryani Menus</h1>
             <div>
                 <div className="flex gap-10">

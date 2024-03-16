@@ -18,7 +18,7 @@ import ReviewModalCard from "../Cards/ReviewModalCard";
     return (
         <>
         <ReviewModalCard isOpen={isOpen} setIsOpen={setIsOpen}/>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mb-20">
             <div className="flex flex-col gap-3">
                 <h1 className="text-2xl font-medium">SS Hyderabad Biryani Reviews</h1>
                 <button className="flex items-center text-xl text-gray-500">All Reviews<IoMdArrowDropdown/></button>

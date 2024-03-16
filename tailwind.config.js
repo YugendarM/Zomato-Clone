@@ -14,8 +14,8 @@ module.exports = {
             bgTransparent: '#f8f8f8',
             bgdarkGray: '#1a1a1a',
             classicBg: '#EBEBEB',
-            700: '#404040',
-            800: '#262626',
+            fontGray: '#696969',
+            lightGrayBg: '#f8f8f8',
             900: '#0d0d0d',
         }
       }

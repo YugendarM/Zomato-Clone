@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../Components/Navbar/Navbar.component";
 import Tab from "../Components/Tab";
+import Footer from "../Components/Footer";
 import { useParams,useLocation } from "react-router-dom";
 import Lander from "../Components/Lander Page";
 
@@ -15,6 +16,7 @@ const HomeLayout = (props) => {
             <Navbar/>
             <Tab/>
             {props.children}
+            <Footer/>
         </>
     );
 };

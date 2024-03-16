@@ -108,10 +108,11 @@ const Delivery = () => {
     const [restaurantList, setRestaurantList] = useState([]);
 
     const reduxState = useSelector((globalStore) => globalStore.restaurant.restaurants);
+    console.log({reduxState});
 
     useEffect(() => {
        reduxState.restaurants && setRestaurantList(reduxState.restaurants);
-       console.log("asdfdfjsd"+reduxState.restaurants);
+       reduxState.restaurants && console.log(restaurantList);
     },[reduxState.restaurants])
 
     return (

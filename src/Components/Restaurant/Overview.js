@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {BiSolidRightArrow} from "react-icons/bi";
 import {AiOutlineCheckCircle} from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
@@ -8,6 +8,12 @@ import Slider from "react-slick";
 import settings from "../Settings/settings";
 import ReviewCard from "../Cards/ReviewCard";
 import MenuCard from "../Cards/MenuCard";
+
+import { UseSelector, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+import { getImages } from "../../Redux/Reducer/Images/Image.action";
+import { getReviews } from "../../Redux/Reducer/Reviews/Reviews.action";
 
 // import classnames from "classnames";
 
@@ -20,6 +26,33 @@ import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 
 
 const Overview = () => {
+
+    const [menuImages,setMenuImages] = useState({images:[]});
+    const [Reviews,setReviews] = useState([]);
+
+    const reduxState = useSelector(
+        (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
+    );
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+       if(reduxState){
+        console.log(reduxState);
+        dispatch(getImages(reduxState?._id)).then((data)=>{
+            //instead of _id, menuImages shld come
+            // console.log(data.payload.images);
+            const images = [];
+            data.payload.image?.image?.map(({location}) => images.push(location));
+            setMenuImages(images);
+        });
+        dispatch(getReviews(reduxState?._id)).then((data)=>{
+            console.log(data.payload.reveiws);
+            setReviews(data.payload.reviews);
+        })
+
+       }
+    },[]);
 
     const {id} =useParams();
 
@@ -83,11 +116,31 @@ const Overview = () => {
 
     ];
 
+    const arr = reduxState?.mapLocation.split(",").map((item)=>(parseFloat(item)));
+    // const parsedArr = arr.map((item)=>(
+    //     item + 1
+    // ))
+
+    console.log(arr)
+
+
+    // const arr = [1,2,3,4,5];
+    // const arr2 = arr.map((item)=> (
+    //     item+10
+    // ))
+
+    // console.log(arr2);
+
+
+    const getLatLong = (mapAddress) => {
+        return mapAddress?.split(",").map((item)=>(parseFloat(item)));
+    }
+
     const updateSettings = {...settings, slidesToShow:3};
 
     return(
         <>
-        <div className="px-3 md:px-0 border-b-2 border-gray-100">
+        <div className="px-3 md:px-0 border-b-2 border-gray-100 mb-20">
             <div className="md:hidden">
                <Link> <p className="flex items-center gap-1 text-zomato-btnpink ">More Info <BiSolidRightArrow className="text-xs"/> </p></Link>
             </div>
@@ -103,7 +156,7 @@ const Overview = () => {
                         </div>
 
                         <div className="flex gap-10">
-                            <MenuCard image={["https://b.zmtcdn.com/data/menus/607/68607/dcd9399bf1e3c08a9bc637c80ca3eb1a.jpg?","https://b.zmtcdn.com/data/pictures/chains/7/68607/8918641c2f8ba3b5a43b04429c13b2d7_featured_v2.jpg?"]} title="Food Menu" pages="2" />
+                            <MenuCard image={[menuImages]} title="Food Menu" pages="2" />
                             <MenuCard image={["https://b.zmtcdn.com/data/menus/607/68607/dcd9399bf1e3c08a9bc637c80ca3eb1a.jpg?"]} title="Food Menu" pages="2" />
                         </div>
                     </div>
@@ -111,9 +164,9 @@ const Overview = () => {
                     <div className="flex flex-col gap-3">
                         <h3 className="text-xl font-medium">Cuisines</h3>
                         <div className="flex items-center gap-3">
-                            {["Biryani","Seafood","North Indian","Mughlai"].map((cuisine) => (
+                            {reduxState?.cuisine.map((data) => (
                                 <div>
-                                    <p className="text-green-600 font-light px-2.5 py-1.5 border border-gray-300 rounded-full">{cuisine}</p>
+                                    <p className="text-green-600 font-light px-2.5 py-1.5 border border-gray-300 rounded-full">{data}</p>
                                 </div>
 
                             ))}
@@ -123,7 +176,7 @@ const Overview = () => {
                     <div className="flex flex-col gap-3">
                         <h3 className="text-xl font-medium">Average Cost</h3>
                         <div className="flex flex-col gap-1 items-start">
-                            <p className="text-lg text-gray-500">₹500 for two people (approx.)</p>
+                            <p className="text-lg text-gray-500">₹{reduxState?.averageCost} for two people (approx.)</p>
                             <p className="text-md text-gray-400">Exclusive of applicable taxes and charges, if any</p>
                             <span className="text-xs py-1 text-gray-300 border-b border-dashed border-gray-300">How do we calculate cost for two?</span>
                             <div>
@@ -179,31 +232,31 @@ const Overview = () => {
                     <div className="w-full p-3  flex flex-col gap-3">
                         <div>
                             <h3 className="text-xl font-medium">Call</h3>
-                            <p className="text-zomato-btnpink">+91637934567890</p>
+                            <p className="text-zomato-btnpink">+91 {reduxState?.contactNumber}</p>
                         </div>
                         <div>
                             <h3 className="text-xl font-medium">Direction</h3>
                             <div className="w-full h-48">
-                                <MapContainer center={[13.048237026381662, 80.27723831442215]} zoom={13} scrollWheelZoom={false}>
+                                <MapContainer center={getLatLong(reduxState?.mapLocation)} zoom={13} scrollWheelZoom={false}>
                                     <TileLayer
                                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                     />
-                                    <Marker position={[13.048237026381662, 80.27723831442215]}>
+                                    <Marker position={getLatLong(reduxState?.mapLocation)}>
                                         <Popup>
-                                        SS Hyderabad Biryani
+                                        {reduxState?.name}
                                         </Popup>
                                     </Marker>
                                 </MapContainer>
                             </div>
-                            <p className="text-lg">32, Ground Floor, Kamarajar Salai, Santhome, Chennai</p>
+                            <p className="text-lg">{reduxState?.address}</p>
                         </div>
 
                         <div className="flex items-center gap-4">
                             <button className="p-2 border border-gray-500 text-lg rounded-xl flex items-center gap-2"><FaRegCopy className="text-gray-500 text-xl"/> Copy</button>
                             <button className="p-2 border border-gray-500 text-lg rounded-xl flex items-center gap-2"><FaDirections className="text-zomato-btnpink text-xl"/> Direction</button>
                         </div>
-                        <Link className=""><p className="text-sm font-light text-zomato-btnpink flex items-center gap-1">{"See all 24 SS Hyderabad Biryani outlets in Chennai".slice(0,46)+"..."}<BiSolidRightArrow/></p></Link>
+                        <Link  className=""><p className="text-sm font-light text-zomato-btnpink flex items-center gap-1">{"See all 24 SS Hyderabad Biryani outlets in Chennai".slice(0,46)+"..."}<BiSolidRightArrow/></p></Link>
                     </div>
                 </aside>
 

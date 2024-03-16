@@ -5,7 +5,7 @@ const Photos = (props) => {
     const photo ="https://b.zmtcdn.com/data/pictures/chains/1/71181/fe25be4517894a3c6f8b70feff4b1e45.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A";
     return(
         <>
-            <div className="flex flex-col gap-3 px-3 pt-5 pb-10 md:px-0">
+            <div className="flex flex-col gap-3 px-3 pt-5 pb-10 md:px-0 mb-20">
                 <h1 className="text-2xl font-medium">SS Hyderabad Biryani Photos</h1>
 
                 <div className="flex gap-4">

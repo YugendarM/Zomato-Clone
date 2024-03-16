@@ -23,7 +23,8 @@ const FoodCard = (props) => {
             <Link to={`/restaurant/${props._id}/overview`}>
                 <div className="w-full shadow-lg rounded-xl md:w-80 lg:p-2 lg:shadow-none lg:hover:shadow-lg ">
                     <div className="h-48 w-full relative">
-                        <img className="h-full w-96 md:w-80 object-cover rounded-t-xl" src={image.images.length && image.images[0].location}/>
+                        {/* <img className="h-full w-96 md:w-80 object-cover rounded-t-xl" src={image.images.length && image.images[0].location}/> */}
+                        <img className="h-full w-96 md:w-80 object-cover rounded-t-xl" src="https://b.zmtcdn.com/data/pictures/chains/8/3400208/a0c3bcc09b1448a7138beda386f8db21.jpg?output-format=webp&fit=around|771.75:416.25&crop=771.75:416.25;*,*"/>
                         <div className="absolute bottom-2">
                             {props.isOff && (
                             <span className=" px-2 bg-blue-600 text-white  text-sm font-medium">{`${props.isOff}`}% OFF up to 100</span>
