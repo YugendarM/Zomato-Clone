@@ -5,7 +5,7 @@ export const getReviews = (resId) => async(dispatch) => {
     try{
         const reviewsList = await axios({
             method: "GET",
-            url: `http://localhost:4000/reviews/${resId}`
+            url: `/reviews/${resId}`
         }) 
         return dispatch({type: GET_REVIEWS, payload: reviewsList.data});
     }
@@ -18,7 +18,7 @@ export const postReviews = (reviewData) => async(dispatch) => {
     try{
         await axios({
             method: "POST",
-            url:"http://localhost:4000/reviews/new"
+            url:"/reviews/new"
         })
         return dispatch({
             type: POST_REVIEWS,

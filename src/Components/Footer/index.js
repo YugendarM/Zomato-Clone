@@ -6,9 +6,10 @@ import {AiFillLinkedin, AiFillYoutube, AiFillFacebook, AiFillTwitterCircle, AiFi
 
 const Footer = () => {
     return(
-        <div className="container mx-auto px-52 bg-zomato-lightGrayBg py-5 mt-10">
-            <div className="flex items-center justify-between  my-8 ">
-                <div className="w-32">
+        <div className="bg-zomato-lightGrayBg py-5 mt-10">
+            <div className="container md:mx-auto lg:px-52 px-2">
+            <div className="md:flex items-center justify-between my-8  ">
+                <div className="w-32 my-4 md:my-0">
                     <img className="h-full w-full" src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png?fit=around|198:42&crop=198:42;*,*" alt="logo"/>
                 </div>
                 <div className="flex items-center gap-4">
@@ -25,8 +26,8 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-between">
-                <div className="flex flex-col items-start gap-1">
+            <div className="flex justify-between flex-wrap">
+                <div className="w-1/2 md:w-1/5 mt-4 md:mt-0 flex flex-col items-start gap-1">
                     <h3 className="font-semibold">ABOUT ZOMATO</h3>
                     <p className="text-zomato-fontGray">Who We Are </p>
                     <p className="text-zomato-fontGray">Blog</p>
@@ -37,7 +38,7 @@ const Footer = () => {
                     <p className="text-zomato-fontGray">Contact Us</p>
                 </div>
 
-                <div className="flex flex-col items-start gap-1">
+                <div className="w-1/2 md:w-1/5 mt-4 md:mt-0  flex flex-col items-start gap-1">
                     <h3 className="font-semibold">ZOMAVERSE</h3>
                     <p className="text-zomato-fontGray">Zomato </p>
                     <p className="text-zomato-fontGray">Blinkit</p>
@@ -46,7 +47,7 @@ const Footer = () => {
                     <p className="text-zomato-fontGray">Zomaland</p>
                 </div>
 
-                <div className="flex flex-col items-start gap-1">
+                <div className=" w-1/2 md:w-1/5 mt-4 md:mt-0  flex flex-col items-start gap-1">
                     <div className="flex flex-col items-start gap-1">
                         <h3 className="font-semibold">FOR RESTAURANTS</h3>
                         <p className="text-zomato-fontGray">Partner With Us </p>
@@ -58,7 +59,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-start gap-1">
+                <div className="w-1/2 md:w-1/5 mt-4 md:mt-0  flex flex-col items-start gap-1">
                     <h3 className="font-semibold">LEARN MORE</h3>
                     <p className="text-zomato-fontGray">Privacy </p>
                     <p className="text-zomato-fontGray">Security</p>
@@ -66,7 +67,7 @@ const Footer = () => {
                     <p className="text-zomato-fontGray">Sitemap</p>
                 </div>
 
-                <div className="flex flex-col items-start gap-1">
+                <div className="w-1/2 md:w-1/5 mt-4 md:mt-0  flex flex-col items-start gap-1">
                     <h3 className="font-semibold">SOCIAL LINKS</h3>
                     <div className="flex gap-2 items-center text-2xl my-2">
                         <AiFillInstagram/>
@@ -82,6 +83,7 @@ const Footer = () => {
                 </div>
 
 
+            </div>
             </div>
         </div>
     );

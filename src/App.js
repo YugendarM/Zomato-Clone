@@ -14,6 +14,10 @@ import Restaurant from './Components/Pages/Restaurant';
 import RestaurantLayoutHOC from './HOC/Restaurant.hoc';
 import CheckoutLayoutHOC from './HOC/Checkout.hoc';
 import Checkout from './Components/Pages/Checkout';
+import axios from 'axios';
+
+//axios default settings
+axios.defaults.baseURL = "https://zomato-clone-backend-navy.vercel.app/"
 
 function App() {
 
